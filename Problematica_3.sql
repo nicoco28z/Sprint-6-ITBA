@@ -24,9 +24,9 @@ SELECT *
 FROM prestamo
 WHERE loan_total / 100 > 80000;
 
---Revisar
 SELECT *
-FROM prestamo;
+FROM prestamo
+WHERE loan_total > (SELECT AVG(loan_total) FROM prestamo);
 
 SELECT count(*) as clientes_menores_de_50_años
 FROM cliente
