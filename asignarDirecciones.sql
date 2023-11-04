@@ -1,7 +1,20 @@
-ALTER TABLE sucursal DROP COLUMN branch_address_id;
+--Cargamos las direcciones de los clientes y los empleados
+--En el caso de coincidir, el empleado es a la vez cliente de banco
 
-ALTER TABLE sucursal
-ADD id_direccion INTEGER;
+ALTER TABLE cliente ADD direccion_id INTEGER;
 
-ALTER TABLE sucursal
-ADD CONSTRAINT fk_direccion FOREIGN KEY (id_direccion) REFERENCES direcciones(id);
+UPDATE cliente SET direccion_id=(
+	SELECT id FROM direcciones WHERE (
+    id = customer_id
+    )
+);
+
+SELECT customer_id, direccion_id, provincia, ciudad, calle FROM cliente JOIN direcciones
+WHERE customer_id = id;
+
+
+ALTER TABLE empleado ADD direccion_id INTEGER;
+
+UPDATE empleado SET direccion_id=(
+	SELECT id FROM direcciones WHERE id = employee_id
+);
