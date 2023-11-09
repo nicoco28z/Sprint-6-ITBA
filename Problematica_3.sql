@@ -19,18 +19,21 @@ INNER JOIN sucursal ON cliente.branch_id = sucursal.branch_id
 WHERE customer_name like 'Brendan'
 ORDER BY sucursal.branch_name;
 
---Revisar
 SELECT *
 FROM prestamo
-WHERE loan_total / 100 > 80000;
+WHERE loan_total / 100 > 80000 AND loan_type != 'PRENDARIO'
+UNION
+SELECT *
+FROM prestamo
+WHERE loan_type = 'PRENDARIO';
 
 SELECT *
 FROM prestamo
 WHERE loan_total > (SELECT AVG(loan_total) FROM prestamo);
 
-SELECT count(*) as clientes_menores_de_50_años
-FROM cliente
-WHERE strftime('%Y-%m-%d',CURRENT_DATE) - strftime('%Y-%m-%d', cliente.dob) < 50;
+SELECT count(*)
+FROM vista_cliente
+WHERE edad < 50;
 
 SELECT *
 FROM cuenta
