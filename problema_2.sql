@@ -6,7 +6,7 @@ SELECT
     customer_name as nombre,
     customer_surname as apellido,
     customer_dni as DNI,
-    cast(strftime('%Y.%m%d', 'now') - strftime('%Y.%m%d', dob) as int) as edad
+    cast(strftime('%Y-%m-%d', 'now') - strftime('%Y-%m-%d', dob) as int) as edad
 FROM cliente;
 
 --Controlamos la vista creada
