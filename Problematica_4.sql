@@ -17,6 +17,19 @@ GROUP BY sucursal.branch_name
 ORDER BY sucursal.branch_name;
 	
 
+--Obtener la cantidad de tarjetas de crédito por tipo por sucursal
+SELECT cant_credito, cant_debito, Sucursal_1 AS Sucursal FROM 
+  	   (SELECT COUNT(*) AS cant_credito, branch_id as Sucursal_1 
+       FROM tarjetas INNER JOIN cliente ON idcliente=customer_id
+       WHERE tipo="Credito"
+       GROUP BY branch_id) as cons_credito
+FULL OUTER JOIN
+  (SELECT COUNT(*) AS cant_debito, branch_id as Sucursal_2
+       FROM tarjetas INNER JOIN cliente ON idcliente=customer_id
+       WHERE tipo="Debito"
+       GROUP BY branch_id) as cons_debito
+ON Sucursal_2 = Sucursal_1
+
 --Creamos un índice para hacer más eficiente la busqueda de clientes a traves del DNI
 CREATE INDEX IF NOT EXISTS busqueda_dni on cliente (customer_dni);
 
