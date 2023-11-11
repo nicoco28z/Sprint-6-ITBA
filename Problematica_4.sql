@@ -52,6 +52,44 @@ WHERE account_id = 200;
 UPDATE cuenta SET balance = (balance + 1000)
 WHERE account_id = 400;
 
+--TIGER SDDDDDDDDD|1D            DR--
+CREATE TABLE "auditoria_cuenta" (
+	"old_id"	INTEGER,
+	"new_id"	INTEGER,
+	"old_balance"	NUMERIC,
+	"new_balance"	NUMERIC NOT NULL,
+	"old_iban"	TEXT NOT NULL,
+	"new_iban"	TEXT NOT NULL,
+	"old_tipo_cuenta"	INTEGER NOT NULL,
+	"new_tipo_cuenta"	INTEGER NOT NULL,
+	"user_action"	INTEGER NOT NULL,
+	"created_at"	INTEGER NOT NULL
+);
+
+CREATE TRIGGER CUENTAS_BU
+BEFORE UPDATE ON cuenta
+FOR EACH ROW
+WHEN NEW.balance != OLD.balance OR NEW.iban != OLD.iban OR NEW.tipo_cuenta != OLD.tipo_cuenta
+BEGIN
+    INSERT INTO auditoria_cuenta ( old_id, new_id, old_balance, new_balance, old_iban, 
+new_iban, old_tipo_cuenta, new_tipo_cuenta, user_action )
+	 VALUES (
+	    OLD.id,
+        NEW.id,
+        OLD.balance,
+        NEW.balance,
+        OLD.iban,
+        NEW.iban,
+        OLD.tipo_cuenta,
+        NEW.tipo_cuenta,
+        'Update'
+    );
+END;
+
+UPDATE cuenta 
+SET balance = balance - 100
+WHERE account_id IN (10, 11, 12, 13, 14);
+
 --Registrar el movimiento en la tabla movimientos
 INSERT INTO movimientos(nro_cuenta, monto, tipo_operacion, hora)
 VALUES
