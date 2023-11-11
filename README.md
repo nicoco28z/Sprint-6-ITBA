@@ -11,13 +11,13 @@ Este repositorio contiene el desarrollo y las soluciones implementadas para abor
   
 **Acciones Realizadas:**
 - Creación de tipos de cliente, cuenta y marcas de tarjeta.
-- Definición de atributos para la entidad 'tarjeta' considerando requisitos de operación del home banking.
+- Definición de atributos para la entidad ```tarjeta``` considerando requisitos de operación del home banking.
 - Establecimiento de relaciones entre tarjetas, marcas de tarjeta y clientes.
 - Inserción de 500 tarjetas de crédito aleatorias asociadas a clientes.
-- Ampliación de la entidad 'direcciones' para su uso por clientes, empleados y sucursales.
+- Ampliación de la entidad ```direcciones``` para su uso por clientes, empleados y sucursales.
 - Asignación aleatoria de direcciones a empleados, clientes y sucursales.
-- Ampliación del alcance de la entidad 'cuenta' para identificar el tipo de cuenta.
-- Corrección del campo 'employee_hire_date' en la tabla de empleados.
+- Ampliación del alcance de la entidad ```cuenta``` para identificar el tipo de cuenta.
+- Corrección del campo ```employee_hire_date``` en la tabla de empleados.
 
 ### Problemática 2: Requerimientos de Consulta Frecuente
 **Acciones Realizadas:**
@@ -41,9 +41,9 @@ Este repositorio contiene el desarrollo y las soluciones implementadas para abor
 **Acciones Realizadas:**
 - Implementación de consultas para obtener datos críticos.
 - Creación de una tabla de auditoría para movimientos de cuentas.
-- Creación de un trigger para registrar cambios en la tabla 'cuentas'.
+- Creación de un trigger para registrar cambios en la tabla ```cuentas```.
 - Uso de índices para mejorar la búsqueda de clientes por DNI.
-- Creación de la tabla 'movimientos' y realización de transacciones.
+- Creación de la tabla ```movimientos``` y realización de transacciones.
 
 ## Instrucciones de Uso
 No hace falta ejecutar las querys de inserción de datos ya que la base de datos completa se encuentra en ```new_db```.
